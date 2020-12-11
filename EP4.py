@@ -1,14 +1,13 @@
-#!/usr/bin/python 
+#!/usr/bin/env python 
+# -*- coding: utf-8 -*-
+import numpy as np
 
 class Tabuleiro: 
     def __init__(self):
-        for i in range(4):
-            for j in range(4):
-                self.matriz1[i][j] = 0
-                self.matriz2[i][j] = 0
-                self.matriz3[i][j] = 0
-                self.matriz4[i][j] = 0
-        
+        self.matriz1 = np.zeros((4,4))
+        self.matriz2 = np.zeros((4,4))
+        self.matriz3 = np.zeros((4,4))
+        self.matriz4 = np.zeros((4,4))
         self.casas_ocupadas = 0
         
     def disponibilidade(self):
@@ -20,26 +19,28 @@ class Tabuleiro:
     
     
 class Jogador:
-    def __init__(self, nome, X_ou_O):
+    def __init__(self, nome, XO):
         self.nome = nome 
-        self.X_ou_O = X_ou_O
-
-    def casa_disponivel(self, matriz, linha, coluna):
-        if matriz[linha][coluna] == 0:
-            return 1 
-        else:
-            return 0
-    
+        self.XO = XO
     def jogada(self, matriz, linha, coluna):
-        if casa_disponivel(matriz, linha, coluna):
-            matriz[linha][coluna] = X_ou_O
-            print("Próximo jogador")
-        else:
-            print("Casa não disponível!")
+        matriz[linha][coluna] = self.XO
+        print("Próximo jogador")
         
 
     
+    
+    
+    # else:
+    #     print("Casa não disponível!")
 
+    # if casa_disponivel(matriz, linha, coluna):
+
+    
+    # def casa_disponivel(self, matriz, linha, coluna):
+    #     if matriz[linha][coluna] == 0:
+    #         return 1 
+    #     else:
+    #         return 0
 
     
     
