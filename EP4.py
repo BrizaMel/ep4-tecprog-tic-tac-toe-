@@ -27,9 +27,16 @@ class Jogador:
         print("Próximo jogador")
         
 
-    
-    
-    
+class Humano(Jogador):
+    def realiza_jogada(self):
+        matriz, linha, coluna = input("Jogador(a) ", self.nome, " escolha a matriz, linha e coluna separados por espaço: ").split()
+        jogada(matriz, linha, coluna);
+
+class 
+
+
+
+      
     # else:
     #     print("Casa não disponível!")
 
@@ -41,6 +48,9 @@ class Jogador:
     #         return 1 
     #     else:
     #         return 0
+
+
+
 
     
     
