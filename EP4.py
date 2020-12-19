@@ -1,6 +1,7 @@
 #!/usr/bin/env python 
 # -*- coding: utf-8 -*-
 import numpy as np
+from random import randint
 
 class Tabuleiro: 
     def __init__(self):
@@ -44,7 +45,25 @@ class Humano(Jogador):
             print("Desculpe, Número de matriz inválido, digite um número entre 1 e 4")
             
 
-class 
+class Estabanado(Jogador): 
+    def realiza_jogada(self):
+        matriz = randint(0,4)
+        linha = randint(0,3)
+        coluna = randint(0, 3)
+        if(matriz == 1):
+           self.jogada(tabuleiro.matriz1, linha, coluna)
+        elif(matriz == 2):
+            self.jogada(tabuleiro.matriz2, linha, coluna)
+        elif(matriz == 3):
+            self.jogada(tabuleiro.matriz3, linha, coluna)
+        elif(matriz == 4):
+            self.jogada(tabuleiro.matriz4, linha, coluna)
+        else:
+            print("Desculpe, Número de matriz inválido, digite um número entre 1 e 4")
+
+
+    
+    
 
 
 
