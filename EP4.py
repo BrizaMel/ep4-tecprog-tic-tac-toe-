@@ -19,13 +19,13 @@ class Tabuleiro:
         return self.disponivel 
     
     def posicaodisponivel(self, matriz, linha, coluna):
-        if(matriz == 1 and self.matriz1 != 0):
+        if(matriz == 1 and self.matriz1[linha][coluna] != 0):
            return 0
-        elif(matriz == 2 and self.matriz2 != 0):
+        elif(matriz == 2 and self.matriz2[linha][coluna] != 0):
             return 0
-        elif(matriz == 3 and self.matriz3 != 0):
+        elif(matriz == 3 and self.matriz3[linha][coluna] != 0):
             return 0
-        elif(matriz == and self.matriz4 != 0):
+        elif(matriz == 4 and self.matriz4[linha][coluna] != 0):
             return 0
         else:
             return 1
@@ -66,41 +66,18 @@ class Estabanado(Jogador):
 
 class Comecru(Jogador):
     def realiza_jogada(self):
-        for m in range(1, 4, 1):
-            for i in range(4):
-                for j in range(4):
-                    if(tabuleiro.posicaodisponivel()):
+        m = 1
+        ok = 0
+        while(m<4 and ok== 0):
+            i = 0
+            j = 0
+            while(i < 4 and ok == 0):
+                j = 0
+                while(j < 4 and ok == 0):
+                    if(tabuleiro.posicaodisponivel(m, i, j)):
                         self.jogada(m, i, j)
-                        break 
-    
-
-
-    
-    
-
-
-
-      
-    # else:
-    #     print("Casa não disponível!")
-
-    # if casa_disponivel(matriz, linha, coluna):
-
-    
-    # def casa_disponivel(self, matriz, linha, coluna):
-    #     if matriz[linha][coluna] == 0:
-    #         return 1 
-    #     else:
-    #         return 0
-
-
-
-
-    
-    
-    
-        
-    
-
-        
-        
+                        ok = 1
+                    j += 1
+                i += 1
+            m += 1
+   
