@@ -18,6 +18,12 @@ class Tabuleiro:
             self.disponivel = 0
         return self.disponivel 
     
+    def posicaodisponivel(self, matriz, linha, coluna):
+        if(matriz[linha][coluna] != 0):
+            return 0
+        else:
+            return 1
+    
     
 class Jogador:
     def __init__(self, nome, XO):
@@ -51,6 +57,16 @@ class Estabanado(Jogador):
         coluna = randint(0, 3)
         print("Matriz: ",matriz, "linha: ", linha, "coluna: ", coluna)
         self.jogada(matriz, linha, coluna)
+
+class Comecru(Jogador):
+    def realiza_jogada(self):
+        for m in range(1, 4, 1):
+            for i in range(4):
+                for j in range(4):
+                    if(tabuleiro.posicaodisponivel()):
+                        self.jogada(m, i, j)
+                        break 
+    
 
 
     
