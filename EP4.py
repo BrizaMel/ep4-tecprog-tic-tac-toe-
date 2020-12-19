@@ -24,8 +24,16 @@ class Jogador:
         self.nome = nome 
         self.XO = XO
     def jogada(self, matriz, linha, coluna):
-        matriz[linha][coluna] = self.XO
-        print("Próximo jogador")
+        if(matriz == 1):
+           tabuleiro.matriz1[linha][coluna] = self.XO
+        elif(matriz == 2):
+            tabuleiro.matriz2[linha][coluna] = self.XO
+        elif(matriz == 3):
+            tabuleiro.matriz3[linha][coluna] = self.XO
+        elif(matriz == 4):
+            tabuleiro.matriz4[linha][coluna] = self.XO
+        else:
+            print("Desculpe, Número de matriz inválido, digite um número entre 1 e 4")
         
 
 class Humano(Jogador):
@@ -33,16 +41,7 @@ class Humano(Jogador):
         print("Por favor jogadore", self.nome)
         matriz, linha, coluna = input("Escolha a matriz, linha e coluna separados por espaço: ").split()
         matriz, linha, coluna = int(matriz), int(linha), int(coluna)
-        if(matriz == 1):
-           self.jogada(tabuleiro.matriz1, linha, coluna)
-        elif(matriz == 2):
-            self.jogada(tabuleiro.matriz2, linha, coluna)
-        elif(matriz == 3):
-            self.jogada(tabuleiro.matriz3, linha, coluna)
-        elif(matriz == 4):
-            self.jogada(tabuleiro.matriz4, linha, coluna)
-        else:
-            print("Desculpe, Número de matriz inválido, digite um número entre 1 e 4")
+        self.jogada(matriz, linha, coluna)
             
 
 class Estabanado(Jogador): 
@@ -50,16 +49,8 @@ class Estabanado(Jogador):
         matriz = randint(1,4)
         linha = randint(0,3)
         coluna = randint(0, 3)
-        if(matriz == 1):
-           self.jogada(tabuleiro.matriz1, linha, coluna)
-        elif(matriz == 2):
-            self.jogada(tabuleiro.matriz2, linha, coluna)
-        elif(matriz == 3):
-            self.jogada(tabuleiro.matriz3, linha, coluna)
-        elif(matriz == 4):
-            self.jogada(tabuleiro.matriz4, linha, coluna)
-        else:
-            print("Desculpe, Número de matriz inválido, digite um número entre 1 e 4")
+        print("Matriz: ",matriz, "linha: ", linha, "coluna: ", coluna)
+        self.jogada(matriz, linha, coluna)
 
 
     
