@@ -29,8 +29,20 @@ class Jogador:
 
 class Humano(Jogador):
     def realiza_jogada(self):
-        matriz, linha, coluna = input("Jogador(a) ", self.nome, " escolha a matriz, linha e coluna separados por espaço: ").split()
-        jogada(matriz, linha, coluna);
+        print("Por favor jogadore", self.nome)
+        matriz, linha, coluna = input("Escolha a matriz, linha e coluna separados por espaço: ").split()
+        matriz, linha, coluna = int(matriz), int(linha), int(coluna)
+        if(matriz == 1):
+           self.jogada(tabuleiro.matriz1, linha, coluna)
+        elif(matriz == 2):
+            self.jogada(tabuleiro.matriz2, linha, coluna)
+        elif(matriz == 3):
+            self.jogada(tabuleiro.matriz3, linha, coluna)
+        elif(matriz == 4):
+            self.jogada(tabuleiro.matriz4, linha, coluna)
+        else:
+            print("Desculpe, Número de matriz inválido, digite um número entre 1 e 4")
+            
 
 class 
 
