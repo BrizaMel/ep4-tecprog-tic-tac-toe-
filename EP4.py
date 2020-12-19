@@ -47,7 +47,7 @@ class Humano(Jogador):
 
 class Estabanado(Jogador): 
     def realiza_jogada(self):
-        matriz = randint(0,4)
+        matriz = randint(1,4)
         linha = randint(0,3)
         coluna = randint(0, 3)
         if(matriz == 1):
