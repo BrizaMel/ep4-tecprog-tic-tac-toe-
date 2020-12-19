@@ -19,7 +19,13 @@ class Tabuleiro:
         return self.disponivel 
     
     def posicaodisponivel(self, matriz, linha, coluna):
-        if(matriz[linha][coluna] != 0):
+        if(matriz == 1 and self.matriz1 != 0):
+           return 0
+        elif(matriz == 2 and self.matriz2 != 0):
+            return 0
+        elif(matriz == 3 and self.matriz3 != 0):
+            return 0
+        elif(matriz == and self.matriz4 != 0):
             return 0
         else:
             return 1
