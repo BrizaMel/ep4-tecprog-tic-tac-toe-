@@ -34,13 +34,13 @@ class Tabuleiro:
         v1=0; v2=0; v3=0; v4=0
         for i in range(4):
             for j in range(4):
-                if(matriz1[i][j]==num):
+                if(self.matriz1[i][j]==num):
                     v1+=1
-                if(matriz2[i][j]==num):
+                if(self.matriz2[i][j]==num):
                     v2+=1
-                if(matriz3[i][j]==num):
+                if(self.matriz3[i][j]==num):
                     v3+=1
-                if(matriz1[i][j]==num):
+                if(self.matriz1[i][j]==num):
                     v4+=1
         if(v1==4 or v2==4 or v3==4 or v4==4):
             print("Jogadore ", num ," ganhou!")
@@ -48,13 +48,13 @@ class Tabuleiro:
         v1=0; v2=0; v3=0; v4=0
         for j in range(4):
             for i in range(4):
-                if(matriz1[i][j]==num):
+                if(self.matriz1[i][j]==num):
                     v1+=1
-                if(matriz2[i][j]==num):
+                if(self.matriz2[i][j]==num):
                     v2+=1
-                if(matriz3[i][j]==num):
+                if(self.matriz3[i][j]==num):
                     v3+=1
-                if(matriz1[i][j]==num):
+                if(self.matriz1[i][j]==num):
                     v4+=1
         if(v1==4 or v2==4 or v3==4 or v4==4):
             print("Jogadore ", num ," ganhou!")
@@ -62,13 +62,13 @@ class Tabuleiro:
         v1=0; v2=0; v3=0; v4=0; j=0
         for i in range(4):
             j+=1
-            if(matriz1[i][j]==num):
+            if(self.matriz1[i][j]==num):
                 v1+=1
-            if(matriz2[i][j]==num):
+            if(self.matriz2[i][j]==num):
                 v2+=1
-            if(matriz3[i][j]==num):
+            if(self.matriz3[i][j]==num):
                 v3+=1
-            if(matriz1[i][j]==num):
+            if(self.matriz1[i][j]==num):
                 v4+=1
         if(v1==4 or v2==4 or v3==4 or v4==4):
             print("Jogadore ", num ," ganhou!")
@@ -76,17 +76,22 @@ class Tabuleiro:
         v1=0; v2=0; v3=0; v4=0; j=3
         for i in range(4):
             j-=1
-            if(matriz1[i][j]==num):
+            if(self.matriz1[i][j]==num):
                 v1+=1
-            if(matriz2[i][j]==num):
+            if(self.matriz2[i][j]==num):
                 v2+=1
-            if(matriz3[i][j]==num):
+            if(self.matriz3[i][j]==num):
                 v3+=1
-            if(matriz1[i][j]==num):
+            if(self.matriz1[i][j]==num):
                 v4+=1
         if(v1==4 or v2==4 or v3==4 or v4==4):
             print("Jogadore ", num ," ganhou!")
             return num
+        for i in range(4):
+            for j in range(4):
+                if(self.matriz1[i][j]==num and self.matriz2[i][j]==num and self.matriz3[i][j]==num and self.matriz4[i][j]==num):
+                    print("Jogadore ", num ," ganhou!")
+                    return num
 
 
 class Jogador:
