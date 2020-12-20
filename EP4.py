@@ -31,44 +31,47 @@ class Tabuleiro:
             return 1
 
     def verifica(self, num):
-        v1=0; v2=0; v3=0; v4=0
+        #verifica linhas de cada matriz horizontal (16)
         for i in range(4):
+            v1=0; v2=0; v3=0; v4=0
             for j in range(4):
-                if(self.matriz1[i][j]==num):
+                if(matriz1[i][j]==num):
                     v1+=1
-                if(self.matriz2[i][j]==num):
+                if(matriz2[i][j]==num):
                     v2+=1
-                if(self.matriz3[i][j]==num):
+                if(matriz3[i][j]==num):
                     v3+=1
-                if(self.matriz1[i][j]==num):
+                if(matriz4[i][j]==num):
                     v4+=1
-        if(v1==4 or v2==4 or v3==4 or v4==4):
-            print("Jogadore ", num ," ganhou!")
-            return num
-        v1=0; v2=0; v3=0; v4=0
+            if(v1==4 or v2==4 or v3==4 or v4==4):
+                print("Jogadore ", num ," ganhou!")
+                return num
+        #verifica colunas de cada matriz horizontal (16)
         for j in range(4):
+            v1=0; v2=0; v3=0; v4=0
             for i in range(4):
-                if(self.matriz1[i][j]==num):
+                if(matriz1[i][j]==num):
                     v1+=1
-                if(self.matriz2[i][j]==num):
+                if(matriz2[i][j]==num):
                     v2+=1
-                if(self.matriz3[i][j]==num):
+                if(matriz3[i][j]==num):
                     v3+=1
-                if(self.matriz1[i][j]==num):
+                if(matriz4[i][j]==num):
                     v4+=1
-        if(v1==4 or v2==4 or v3==4 or v4==4):
-            print("Jogadore ", num ," ganhou!")
-            return num
+            if(v1==4 or v2==4 or v3==4 or v4==4):
+                print("Jogadore ", num ," ganhou!")
+                return num
+        #verifica diagonais de cada matriz horizontal (8)
         v1=0; v2=0; v3=0; v4=0; j=0
         for i in range(4):
             j+=1
-            if(self.matriz1[i][j]==num):
+            if(matriz1[i][j]==num):
                 v1+=1
-            if(self.matriz2[i][j]==num):
+            if(matriz2[i][j]==num):
                 v2+=1
-            if(self.matriz3[i][j]==num):
+            if(matriz3[i][j]==num):
                 v3+=1
-            if(self.matriz1[i][j]==num):
+            if(matriz4[i][j]==num):
                 v4+=1
         if(v1==4 or v2==4 or v3==4 or v4==4):
             print("Jogadore ", num ," ganhou!")
@@ -76,22 +79,53 @@ class Tabuleiro:
         v1=0; v2=0; v3=0; v4=0; j=3
         for i in range(4):
             j-=1
-            if(self.matriz1[i][j]==num):
+            if(matriz1[i][j]==num):
                 v1+=1
-            if(self.matriz2[i][j]==num):
+            if(matriz2[i][j]==num):
                 v2+=1
-            if(self.matriz3[i][j]==num):
+            if(matriz3[i][j]==num):
                 v3+=1
-            if(self.matriz1[i][j]==num):
+            if(matriz4[i][j]==num):
                 v4+=1
         if(v1==4 or v2==4 or v3==4 or v4==4):
             print("Jogadore ", num ," ganhou!")
             return num
+        #verifica verticais "entre matrizes" (verticais das matrizes verticais) (16)
         for i in range(4):
             for j in range(4):
-                if(self.matriz1[i][j]==num and self.matriz2[i][j]==num and self.matriz3[i][j]==num and self.matriz4[i][j]==num):
+                if(matriz1[i][j]==num and matriz2[i][j]==num and matriz3[i][j]==num and matriz4[i][j]==num):
                     print("Jogadore ", num ," ganhou!")
                     return num
+        #verifica diagonais das matrizes verticais (16)
+        for i in range(4):
+            if(matriz1[i][0]==num and matriz2[i][1]==num and matriz3[i][2]==num and matriz4[i][3]==num):
+                    print("Jogadore ", num ," ganhou!")
+                    return num
+        for i in range(4):
+            if(matriz4[i][0]==num and matriz3[i][1]==num and matriz2[i][2]==num and matriz1[i][3]==num):
+                    print("Jogadore ", num ," ganhou!")
+                    return num
+        for j in range(4):
+            if(matriz1[0][j]==num and matriz2[1][j]==num and matriz3[2][j]==num and matriz4[3][j]==num):
+                    print("Jogadore ", num ," ganhou!")
+                    return num
+        for j in range(4):
+            if(matriz4[0][j]==num and matriz3[1][j]==num and matriz2[2][j]==num and matriz1[3][j]==num):
+                    print("Jogadore ", num ," ganhou!")
+                    return num
+        #verifica diagonais do cubo todo (4)
+        if(matriz1[0][0]==num and matriz2[1][1]==num and matriz3[2][2]==num and matriz4[3][3]==num):
+                print("Jogadore ", num ," ganhou!")
+                return num
+        if(matriz1[0][3]==num and matriz2[1][2]==num and matriz3[2][1]==num and matriz4[3][0]==num):
+                print("Jogadore ", num ," ganhou!")
+                return num
+        if(matriz1[3][3]==num and matriz2[2][2]==num and matriz3[1][1]==num and matriz4[0][0]==num):
+                print("Jogadore ", num ," ganhou!")
+                return num
+        if(matriz1[3][0]==num and matriz2[2][1]==num and matriz3[1][2]==num and matriz4[0][3]==num):
+                print("Jogadore ", num ," ganhou!")
+                return num
 
 
 class Jogador:
