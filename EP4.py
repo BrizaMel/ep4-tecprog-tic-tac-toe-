@@ -147,9 +147,19 @@ class Jogador:
 
 class Humano(Jogador):
     def realiza_jogada(self):
+        possibilidades = {1,2,3,4}
         print("Por favor jogadore", self.nome)
         matriz, linha, coluna = input("Escolha a matriz, linha e coluna separados por espaço: ").split()
         matriz, linha, coluna = int(matriz), int(linha), int(coluna)
+        while( matriz not in possibilidades ):
+            print("Desculpe, o número de matriz que você digitou é invalido, tente novamente.")
+            matriz = int(input("Digite um número de matriz válido(1 a 4): "))
+        while( linha not in possibilidades ):
+            print("Desculpe, o número de matriz que você digitou é invalido, tente novamente.")
+            linha = int(input("Digite um número de linha válido(1 a 4): "))
+        while( coluna not in possibilidades ):
+            print("Desculpe, o número de coluna que você digitou é invalido, tente novamente.")
+            matriz = int(input("Digite um número de coluna válido(1 a 4) "))
         self.jogada(matriz, linha, coluna)
 
 
