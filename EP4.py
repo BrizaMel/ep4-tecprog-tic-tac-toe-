@@ -10,14 +10,12 @@ class Tabuleiro:
         self.matriz3 = np.zeros((4,4))
         self.matriz4 = np.zeros((4,4))
         self.casas_ocupadas = 0
-
     def disponibilidade(self):
         if self.casas_ocupadas < 64: # ainda pode jogar
             self.disponivel = 1
         else:
             self.disponivel = 0
         return self.disponivel
-
     def posicaodisponivel(self, matriz, linha, coluna):
         if(matriz == 1 and self.matriz1[linha][coluna] != 0):
            return 0
@@ -29,7 +27,6 @@ class Tabuleiro:
             return 0
         else:
             return 1
-
     def verifica(self, num):
         #verifica linhas de cada matriz horizontal (16)
         for i in range(4):
@@ -64,7 +61,6 @@ class Tabuleiro:
         #verifica diagonais de cada matriz horizontal (8)
         v1=0; v2=0; v3=0; v4=0; j=0
         for i in range(4):
-            j+=1
             if(self.matriz1[i][j]==num):
                 v1+=1
             if(self.matriz2[i][j]==num):
@@ -73,6 +69,7 @@ class Tabuleiro:
                 v3+=1
             if(self.matriz4[i][j]==num):
                 v4+=1
+            j+=1
         if(v1==4 or v2==4 or v3==4 or v4==4):
             print("Jogadore ", num ," ganhou!")
             return num
