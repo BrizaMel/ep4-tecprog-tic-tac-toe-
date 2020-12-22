@@ -10,12 +10,14 @@ class Tabuleiro:
         self.matriz3 = np.zeros((4,4))
         self.matriz4 = np.zeros((4,4))
         self.casas_ocupadas = 0
+
     def disponibilidade(self):
         if self.casas_ocupadas < 64: # ainda pode jogar
             self.disponivel = 1
         else:
             self.disponivel = 0
         return self.disponivel
+
     def posicaodisponivel(self, matriz, linha, coluna):
         if(matriz == 1 and self.matriz1[linha][coluna] != 0):
            return 0
@@ -27,6 +29,7 @@ class Tabuleiro:
             return 0
         else:
             return 1
+
     def verifica(self, num):
         #verifica linhas de cada matriz horizontal (16)
         for i in range(4):
@@ -123,6 +126,25 @@ class Tabuleiro:
         if(self.matriz1[3][0]==num and self.matriz2[2][1]==num and self.matriz3[1][2]==num and self.matriz4[0][3]==num):
                 print("Jogadore ", num ," ganhou!")
                 return num
+    
+    def imprimematriz(self):
+        for i in range(4):
+            for j in range(4):
+                print("+---", end = "")
+            print("+")
+            for j in range(4):
+                print(j, " ", end = "")
+                if(self.matriz1[i][j] != 0):
+                    if(self.matriz1[i][j] == 1):
+                    print("|   O", end = "")
+                    if(self.matriz[i][j] == 2):
+                    print("|   X", end = "")
+            print("|")
+        
+        print("4", end = "")
+        for j in range(4)
+            print("+---", end = "")
+        print("+")
 
 
 class Jogador:
@@ -184,3 +206,4 @@ class Comecru(Jogador):
                     j += 1
                 i += 1
             m += 1
+
