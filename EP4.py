@@ -128,25 +128,67 @@ class Tabuleiro:
                 return num
     
     def imprimematriz(self):
+        print("Matriz 1", end='')
+        print("                            ", end='')
+        print("Matriz 2")
+        print("__1___2____3___4_", end='') 
+        print("           ", end='')
+        print("__1___2____3___4_")
         for i in range(4):
+            print(i, " ", end='')
             for j in range(4):
-                print("+---", end = "")
-            print("+")
-            for j in range(4):
-                print(j, " ", end = "")
-                if(self.matriz1[i][j] != 0):
-                    if(self.matriz1[i][j] == 1):
-                    print("|   O", end = "")
-                    if(self.matriz[i][j] == 2):
-                    print("|   X", end = "")
+                if(self.matriz1[i][j] == 1):
+                    print("|_x_", end='')
+                if(self.matriz1[i][j] == 2):
+                    print("|_o_", end='')
+                else: 
+                    print("|___", end='')
+            print("|", end='')
+
+            print("           ", end='')
+            for j in range(4)
+                if(self.matriz2[i][j] == 1):
+                    print("|_x_", end='')
+                if(self.matriz2[i][j] == 2):
+                    print("|_o_", end='')
+                else: 
+                    print("|___", end='')
             print("|")
         
-        print("4", end = "")
-        for j in range(4)
-            print("+---", end = "")
-        print("+")
+        print("  ")
+
+        print("Matriz 3", end='')
+        print("                            ", end='')
+        print("Matriz 4")
+        print("__1___2____3___4_", end='') 
+        print("           ", end='')
+        print("__1___2____3___4_")
+        for i in range(4):
+            print(i, " ", end='')
+            for j in range(4):
+                if(self.matriz3[i][j] == 1):
+                    print("|_x_", end='')
+                if(self.matriz3[i][j] == 2):
+                    print("|_o_", end='')
+                else: 
+                    print("|___", end='')
+            print("|", end='')
+
+            print("           ", end='')
+            for j in range(4)
+                if(self.matriz4[i][j] == 1):
+                    print("|_x_", end='')
+                if(self.matriz4[i][j] == 2):
+                    print("|_o_", end='')
+                else: 
+                    print("|___", end='')
+            print("|")
+
+        
 
 
+or i in range(4)
+            print("__
 class Jogador:
     def __init__(self, nome, XO):
         self.nome = nome
