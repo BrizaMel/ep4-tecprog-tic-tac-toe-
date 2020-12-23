@@ -16,7 +16,7 @@ class Tabuleiro:
         else:
             self.disponivel = 0
         return self.disponivel
-    def posicaodisponivel(self, matriz, linha, coluna):
+    def posicao_disponivel(self, matriz, linha, coluna):
         if(matriz == 1 and self.matriz1[linha][coluna] != 0):
            return 0
         elif(matriz == 2 and self.matriz2[linha][coluna] != 0):
@@ -27,7 +27,7 @@ class Tabuleiro:
             return 0
         else:
             return 1
-    def verifica(self, num, nome):
+    def verifica_vitoria(self, num, nome):
         #verifica linhas de cada matriz horizontal (16)
         for i in range(4):
             v1=0; v2=0; v3=0; v4=0
@@ -166,7 +166,7 @@ class Tabuleiro:
                 print("-------------Jogadore ", nome ," ganhou!-------------")
                 print("")
                 return 1
-    def imprimematriz(self):
+    def imprime_matriz(self):
         print("")
         print("       Matriz 1", end='')
         print("                   ", end='')
@@ -261,7 +261,7 @@ class Humano(Jogador):
             while( coluna not in colunas ):
                 print("Desculpe, o número de coluna que você digitou é invalido, tente novamente.")
                 coluna = int(input("Digite um número de coluna válido(0 a 3) "))
-            if(self.tabuleiro.posicaodisponivel(matriz, linha, coluna)):
+            if(self.tabuleiro.posicao_disponivel(matriz, linha, coluna)):
                 self.jogada(matriz, linha, coluna)
                 print(self.nome, " (humano) jogou na matriz ", matriz, ", linha ", linha, " e coluna ", coluna)
                 jogadaValida = 1
@@ -276,7 +276,7 @@ class Estabanado(Jogador):
             matriz = randint(1,4)
             linha = randint(0,3)
             coluna = randint(0, 3)
-            if(self.tabuleiro.posicaodisponivel(matriz, linha, coluna)):
+            if(self.tabuleiro.posicao_disponivel(matriz, linha, coluna)):
                 self.jogada(matriz, linha, coluna)
                 print(self.nome, " (estabanado) jogou na matriz ", matriz, ", linha ", linha, " e coluna ", coluna)
                 jogadaValida = 1
@@ -291,7 +291,7 @@ class Comecru(Jogador):
             while(i < 4 and ok == 0):
                 j = 0
                 while(j < 4 and ok == 0):
-                    if(self.tabuleiro.posicaodisponivel(m, i, j)):
+                    if(self.tabuleiro.posicao_disponivel(m, i, j)):
                         self.jogada(m, i, j)
                         ok = 1
                     j += 1
@@ -348,11 +348,11 @@ def main():
         while(1):
 
             if(tabuleiro.disponibilidade() == 1):
-                tabuleiro.imprimematriz()
+                tabuleiro.imprime_matriz()
                 jogador1.realiza_jogada()
-                verifica = tabuleiro.verifica(1, jogador1.nome)
+                verifica = tabuleiro.verifica_vitoria(1, jogador1.nome)
                 if(verifica == 1):
-                    tabuleiro.imprimematriz()
+                    tabuleiro.imprime_matriz()
                     break
             else:
                 print("Não há mais casas disponíveis. Fim de jogo.")
@@ -360,11 +360,11 @@ def main():
                 break
 
             if(tabuleiro.disponibilidade() == 1):
-                tabuleiro.imprimematriz()
+                tabuleiro.imprime_matriz()
                 jogador2.realiza_jogada()
-                verifica = tabuleiro.verifica(2, jogador2.nome)
+                verifica = tabuleiro.verifica_vitoria(2, jogador2.nome)
                 if(verifica == 1):
-                    tabuleiro.imprimematriz()
+                    tabuleiro.imprime_matriz()
                     break
             else:
                 print("Não há mais casas disponíveis. Fim de jogo.")
