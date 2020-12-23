@@ -166,7 +166,6 @@ class Tabuleiro:
                 print("-------------Jogadore ", nome ," ganhou!-------------")
                 print("")
                 return 1
-
     def imprimematriz(self):
         print("")
         print("       Matriz 1", end='')
@@ -226,18 +225,19 @@ class Tabuleiro:
 
         
 class Jogador:
-    def __init__(self, nome, XO):
+    def __init__(self, nome, XO,tabuleiro):
         self.nome = nome
         self.XO = XO
+        self.tabuleiro = tabuleiro
     def jogada(self, matriz, linha, coluna):
         if(matriz == 1):
-           tabuleiro.matriz1[linha][coluna] = self.XO
+           self.tabuleiro.matriz1[linha][coluna] = self.XO
         elif(matriz == 2):
-            tabuleiro.matriz2[linha][coluna] = self.XO
+            self.tabuleiro.matriz2[linha][coluna] = self.XO
         elif(matriz == 3):
-            tabuleiro.matriz3[linha][coluna] = self.XO
+            self.tabuleiro.matriz3[linha][coluna] = self.XO
         elif(matriz == 4):
-            tabuleiro.matriz4[linha][coluna] = self.XO
+            self.tabuleiro.matriz4[linha][coluna] = self.XO
 
 class Humano(Jogador):
     def realiza_jogada(self):
@@ -247,11 +247,11 @@ class Humano(Jogador):
         jogadaValida = 0
         while(jogadaValida == 0):
             print("")
-            print("Por favor jogadore", self.nome)
+            print("----------Por favor jogadore", self.nome,"----------")
+            print("")
             matriz = int(input("Escolha uma matriz(1, 2, 3 ou 4): "))
             linha = int(input("Escolha uma linha(0, 1, 2 ou 3): "))
             coluna = int(input("Escolha uma coluna(0, 1, 2 ou 3): "))
-
             while( matriz not in matrizes ):
                 print("Desculpe, o número de matriz que você digitou é invalido, tente novamente.")
                 matriz = int(input("Digite um número de matriz válido(1 a 4): "))
@@ -261,8 +261,7 @@ class Humano(Jogador):
             while( coluna not in colunas ):
                 print("Desculpe, o número de coluna que você digitou é invalido, tente novamente.")
                 coluna = int(input("Digite um número de coluna válido(0 a 3) "))
-
-            if(tabuleiro.posicaodisponivel(matriz, linha, coluna)):
+            if(self.tabuleiro.posicaodisponivel(matriz, linha, coluna)):
                 self.jogada(matriz, linha, coluna)
                 print(self.nome, " (humano) jogou na matriz ", matriz, ", linha ", linha, " e coluna ", coluna)
                 jogadaValida = 1
@@ -277,7 +276,7 @@ class Estabanado(Jogador):
             matriz = randint(1,4)
             linha = randint(0,3)
             coluna = randint(0, 3)
-            if(tabuleiro.posicaodisponivel(matriz, linha, coluna)):
+            if(self.tabuleiro.posicaodisponivel(matriz, linha, coluna)):
                 self.jogada(matriz, linha, coluna)
                 print(self.nome, " (estabanado) jogou na matriz ", matriz, ", linha ", linha, " e coluna ", coluna)
                 jogadaValida = 1
@@ -292,71 +291,92 @@ class Comecru(Jogador):
             while(i < 4 and ok == 0):
                 j = 0
                 while(j < 4 and ok == 0):
-                    if(tabuleiro.posicaodisponivel(m, i, j)):
+                    if(self.tabuleiro.posicaodisponivel(m, i, j)):
                         self.jogada(m, i, j)
                         ok = 1
                     j += 1
                 i += 1
             m += 1
-        print(self.nome, " (comecru) jogou na matriz ", matriz, ", linha ", linha, " e coluna ", coluna)
+        print(self.nome, " (comecru) jogou na matriz ", m, ", linha ", i, " e coluna ", j)
 
 def main():
-    print("Tipos de jogadores disponíveis: ")
-    print("(1) Jogador Humano")
-    print("(2) Jogador Estabanado")
-    print("(3) Jogador Come cru")
-    possibilidadesTipo = {1, 2, 3}
-    primeiro = input("Qual o tipo do primeiro jogador? (escolha 1, 2 ou 3) ")
-    while(primeiro not in possibilidadesTipo): 
-        primeiro = int(input("Tipo de primeiro jogador inexistente. Escolha o tipo 1, 2 ou 3: "))
-    
-    nomeprimeiro= input("Digite o nome do primeiro jogador: ")
+    novoJogo = 1
+    while(novoJogo == 1):
+        tabuleiro = Tabuleiro()
+        print("Tipos de jogadores disponíveis: ")
+        print("(1) Jogador Humano")
+        print("(2) Jogador Estabanado")
+        print("(3) Jogador Come cru")
+        print("")
+        possibilidadesTipo = {1, 2, 3}
+        primeiro = int(input("Qual o tipo do primeiro jogador? (escolha 1, 2 ou 3):  "))
+        print("")
+        while(primeiro not in possibilidadesTipo): 
+            primeiro = int(input("Tipo de primeiro jogador inexistente. Escolha o tipo 1, 2 ou 3): "))
+            print("")
+        
+        nomeprimeiro= input("Digite o nome do primeiro jogador: ")
+        print("")
 
-    segundo = input("Qual o tipo do segundo jogador? (escolha 1, 2 ou 3 ")
-    while(segundo not in possibilidadesTipo):
-        segundo = int(input("Tipo de segundo jogador inexistente. Escolha o tipo 1, 2 ou 3: ")) 
+        segundo = int(input("Qual o tipo do segundo jogador? (escolha 1, 2 ou 3): "))
+        print("")
+        while(segundo not in possibilidadesTipo):
+            segundo = int(input("Tipo de segundo jogador inexistente. Escolha o tipo 1, 2 ou 3):  ")) 
+            print("")
 
-    nomesegundo = input("Digite o nome do segundo jogador: ")
+        nomesegundo = input("Digite o nome do segundo jogador: ")
+        print("")
 
-    if(primeiro == 1):
-        jogador1 = Humano(nomeprimeiro, 1)
-    elif(primeiro == 2):
-        jogador1 = Estabanado(nomeprimeiro, 1)
-    elif(primeiro == 3):
-        jogador 1 = Comecru(nomeprimeiro, 1)
-    
-    if(segundo == 1):
-        jogador2 = Humano(nomesegundo, 2)
-    elif(segundo == 2):
-        jogador2 =  Estabanado(nomesegundo, 2)
-    elif(segundo == 3):
-        jogador 2 = Comecru(nomesegundo, 2)
+        if(primeiro == 1):
+            jogador1 = Humano(nomeprimeiro, 1,tabuleiro)
+        elif(primeiro == 2):
+            jogador1 = Estabanado(nomeprimeiro, 1, tabuleiro)
+        elif(primeiro == 3):
+            jogador1 = Comecru(nomeprimeiro, 1,tabuleiro)
+        
+        if(segundo == 1):
+            jogador2 = Humano(nomesegundo, 2, tabuleiro)
+        elif(segundo == 2):
+            jogador2 =  Estabanado(nomesegundo, 2, tabuleiro)
+        elif(segundo == 3):
+            jogador2 = Comecru(nomesegundo, 2, tabuleiro)
 
-    tabuleiro = Tabuleiro()
-    verifica = 0
-    print("Que os jogos comecem!")
+        verifica = 0
+        print("Que os jogos comecem!")
+        print("")
 
-    while(1):
+        while(1):
 
-        if(tabuleiro.disponibilidade() == 1):
-            tabuleiro.imprimematriz()
-            jogador1.realiza_jogada()
-            verifica = tabuleiro.verifica(1, jogador1)
-            if(verifica == 1):
+            if(tabuleiro.disponibilidade() == 1):
+                tabuleiro.imprimematriz()
+                jogador1.realiza_jogada()
+                verifica = tabuleiro.verifica(1, jogador1.nome)
+                if(verifica == 1):
+                    tabuleiro.imprimematriz()
+                    break
+            else:
+                print("Não há mais casas disponíveis. Fim de jogo.")
+                print("")
                 break
-        else:
-            print("Não há mais casas disponíveis. Fim de jogo.")
-            break
 
-        if(tabuleiro.disponibilidade() == 1):
-            tabuleiro.imprimematriz()
-            jogador2.realiza_jogada()
-            verifica = tabuleiro.verifica(2, jogador2)
-            if(verifica == 1):
+            if(tabuleiro.disponibilidade() == 1):
+                tabuleiro.imprimematriz()
+                jogador2.realiza_jogada()
+                verifica = tabuleiro.verifica(2, jogador2.nome)
+                if(verifica == 1):
+                    tabuleiro.imprimematriz()
+                    break
+            else:
+                print("Não há mais casas disponíveis. Fim de jogo.")
+                print("")
                 break
+        print("")
+        escolha = input("Deseja continuar jogando? Digite 'sim' ou 'nao': ")
+        if(escolha == "sim"):
+            novoJogo=1
         else:
-            print("Não há mais casas disponíveis. Fim de jogo.")
-            break
+            novoJogo=0
+
         
 main()
 
