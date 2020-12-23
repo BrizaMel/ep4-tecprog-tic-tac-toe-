@@ -10,7 +10,7 @@ class Tabuleiro:
         self.matriz3 = np.zeros((4,4))
         self.matriz4 = np.zeros((4,4))
         self.casas_ocupadas = 0
-    def disponibilidade(self):
+    def verifica_empate(self):
         if self.casas_ocupadas < 64: # ainda pode jogar
             self.disponivel = 1
         else:
@@ -41,9 +41,6 @@ class Tabuleiro:
                 if(self.matriz4[i][j]==num):
                     v4+=1
             if(v1==4 or v2==4 or v3==4 or v4==4):
-                print("")
-                print("-------------Jogadore ", nome ," ganhou!-------------")
-                print("")
                 return 1
         #verifica colunas de cada matriz horizontal (16)
         for j in range(4):
@@ -58,9 +55,6 @@ class Tabuleiro:
                 if(self.matriz4[i][j]==num):
                     v4+=1
             if(v1==4 or v2==4 or v3==4 or v4==4):
-                print("")
-                print("-------------Jogadore ", nome ," ganhou!-------------")
-                print("")
                 return 1
         #verifica diagonais de cada matriz horizontal (8)
         v1=0; v2=0; v3=0; v4=0; j=0
@@ -75,9 +69,6 @@ class Tabuleiro:
                 v4+=1
             j+=1
         if(v1==4 or v2==4 or v3==4 or v4==4):
-            print("")
-            print("-------------Jogadore ", nome ," ganhou!-------------")
-            print("")
             return 1
         #verifica diagonais de cada matriz horizontal (8)
         v1=0; v2=0; v3=0; v4=0; j=3
@@ -92,9 +83,6 @@ class Tabuleiro:
                 v4+=1
             j-=1
         if(v1==4 or v2==4 or v3==4 or v4==4):
-            print("")
-            print("-------------Jogadore ", nome ," ganhou!-------------")
-            print("")
             return 1
         v1=0; v2=0; v3=0; v4=0; j=3
         for i in range(4):
@@ -108,63 +96,33 @@ class Tabuleiro:
             if(self.matriz4[i][j]==num):
                 v4+=1
         if(v1==4 or v2==4 or v3==4 or v4==4):
-            print("")
-            print("-------------Jogadore ", nome ," ganhou!-------------")
-            print("")
             return 1
         #verifica verticais "entre matrizes" (verticais das matrizes verticais) (16)
         for i in range(4):
             for j in range(4):
                 if(self.matriz1[i][j]==num and self.matriz2[i][j]==num and self.matriz3[i][j]==num and self.matriz4[i][j]==num):
-                    print("")
-                    print("-------------Jogadore ", nome ," ganhou!-------------")
-                    print("")
                     return 1
         #verifica diagonais das matrizes verticais (16)
         for i in range(4):
             if(self.matriz1[i][0]==num and self.matriz2[i][1]==num and self.matriz3[i][2]==num and self.matriz4[i][3]==num):
-                    print("")
-                    print("-------------Jogadore ", nome ," ganhou!-------------")
-                    print("")
                     return 1
         for i in range(4):
             if(self.matriz4[i][0]==num and self.matriz3[i][1]==num and self.matriz2[i][2]==num and self.matriz1[i][3]==num):
-                    print("")
-                    print("-------------Jogadore ", nome ," ganhou!-------------")
-                    print("")
                     return 1
         for j in range(4):
             if(self.matriz1[0][j]==num and self.matriz2[1][j]==num and self.matriz3[2][j]==num and self.matriz4[3][j]==num):
-                    print("")
-                    print("-------------Jogadore ", nome ," ganhou!-------------")
-                    print("")
                     return 1
         for j in range(4):
             if(self.matriz4[0][j]==num and self.matriz3[1][j]==num and self.matriz2[2][j]==num and self.matriz1[3][j]==num):
-                    print("")
-                    print("-------------Jogadore ", nome ," ganhou!-------------")
-                    print("")
                     return 1
         #verifica diagonais do cubo todo (4)
         if(self.matriz1[0][0]==num and self.matriz2[1][1]==num and self.matriz3[2][2]==num and self.matriz4[3][3]==num):
-                print("")
-                print("-------------Jogadore ", nome ," ganhou!-------------")
-                print("")
                 return 1
         if(self.matriz1[0][3]==num and self.matriz2[1][2]==num and self.matriz3[2][1]==num and self.matriz4[3][0]==num):
-                print("")
-                print("-------------Jogadore ", nome ," ganhou!-------------")
-                print("")
                 return 1
         if(self.matriz1[3][3]==num and self.matriz2[2][2]==num and self.matriz3[1][1]==num and self.matriz4[0][0]==num):
-                print("")
-                print("-------------Jogadore ", nome ," ganhou!-------------")
-                print("")
                 return 1
         if(self.matriz1[3][0]==num and self.matriz2[2][1]==num and self.matriz3[1][2]==num and self.matriz4[0][3]==num):
-                print("")
-                print("-------------Jogadore ", nome ," ganhou!-------------")
-                print("")
                 return 1
     def imprime_matriz(self):
         print("")
@@ -238,6 +196,7 @@ class Jogador:
             self.tabuleiro.matriz3[linha][coluna] = self.XO
         elif(matriz == 4):
             self.tabuleiro.matriz4[linha][coluna] = self.XO
+            
 
 class Humano(Jogador):
     def realiza_jogada(self):
@@ -347,24 +306,30 @@ def main():
 
         while(1):
 
-            if(tabuleiro.disponibilidade() == 1):
+            if(tabuleiro.verifica_empate() == 1):
                 tabuleiro.imprime_matriz()
                 jogador1.realiza_jogada()
+                tabuleiro.casas_ocupadas+=1
                 verifica = tabuleiro.verifica_vitoria(1, jogador1.nome)
                 if(verifica == 1):
                     tabuleiro.imprime_matriz()
+                    print("")
+                    print("-------------Jogadore ", jogador1.nome ," ganhou!-------------")
                     break
             else:
                 print("Não há mais casas disponíveis. Fim de jogo.")
                 print("")
                 break
 
-            if(tabuleiro.disponibilidade() == 1):
+            if(tabuleiro.verifica_empate() == 1):
                 tabuleiro.imprime_matriz()
                 jogador2.realiza_jogada()
+                tabuleiro.casas_ocupadas+=1
                 verifica = tabuleiro.verifica_vitoria(2, jogador2.nome)
                 if(verifica == 1):
                     tabuleiro.imprime_matriz()
+                    print("")
+                    print("-------------Jogadore ", jogador2.nome ," ganhou!-------------")
                     break
             else:
                 print("Não há mais casas disponíveis. Fim de jogo.")
@@ -377,8 +342,141 @@ def main():
         else:
             novoJogo=0
 
-        
+def testeEmpate():
+    tabuleiro_de_teste = Tabuleiro()
+    for i in range(4):
+        for j in range(4):
+            tabuleiro_de_teste.matriz1[i][j] = 1
+            tabuleiro_de_teste.casas_ocupadas+=1
+    for i in range(4):
+        for j in range(4):
+            tabuleiro_de_teste.matriz2[i][j] = 1
+            tabuleiro_de_teste.casas_ocupadas+=1
+    for i in range(4):
+        for j in range(4):
+            tabuleiro_de_teste.matriz3[i][j] = 1
+            tabuleiro_de_teste.casas_ocupadas+=1
+    for i in range(4):
+        for j in range(4):
+            tabuleiro_de_teste.matriz4[i][j] = 1
+            tabuleiro_de_teste.casas_ocupadas+=1
+    if(tabuleiro_de_teste.verifica_empate() == 0): #Retorna 0 se empatar
+        return 1
+    else:
+        return 0   # Tabuleiro Está cheio mas não empatou, ERRO
+
+def testeDisponibilidade():
+    tabuleiro_de_teste2 = Tabuleiro()
+    for i in range(4):
+        for j in range(4):
+            tabuleiro_de_teste2.matriz1[i][j] = 1
+            if(tabuleiro_de_teste2.posicao_disponivel(1,i,j) == 1): #Significa que a posição está disponivel, mas ela não está!
+                return 0
+    for i in range(4):
+        for j in range(4):
+            tabuleiro_de_teste2.matriz2[i][j] = 1
+            if(tabuleiro_de_teste2.posicao_disponivel(2,i,j) == 1):
+                return 0
+    for i in range(4):
+        for j in range(4):
+            tabuleiro_de_teste2.matriz3[i][j] = 1
+            if(tabuleiro_de_teste2.posicao_disponivel(3,i,j) == 1):
+                return 0
+    for i in range(4):
+        for j in range(4):
+            tabuleiro_de_teste2.matriz4[i][j] = 1
+            if(tabuleiro_de_teste2.posicao_disponivel(4,i,j) == 1):
+                return 0
+    return 1
+
+def testeVitoria():
+    tabuleiro_de_teste3 = Tabuleiro()
+    for i in range(4):   # Verifica a vitoria em todas as linhas horizontais das matrizes 
+        for j in range(4):
+            tabuleiro_de_teste3.matriz1[i][j] = 1
+        if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+            return 0
+        tabuleiro_de_teste3 = Tabuleiro()
+
+        for j in range(4):
+            tabuleiro_de_teste3.matriz2[i][j] = 1
+        if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+            return 0
+        tabuleiro_de_teste3 = Tabuleiro()
+
+        for j in range(4):
+            tabuleiro_de_teste3.matriz3[i][j] = 1
+        if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+            return 0
+        tabuleiro_de_teste3 = Tabuleiro()
+
+        for j in range(4):
+            tabuleiro_de_teste3.matriz4[i][j] = 1
+        if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+            return 0
+        tabuleiro_de_teste3 = Tabuleiro()
+
+        # for j in range(4):
+        #     tabuleiro_de_teste3.matriz1[i][j] = 1
+        # if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+        #     return 0
+        # tabuleiro_de_teste3 = Tabuleiro()
+    for j in range(4):   # Verifica a vitoria em todas as linhas verticais das matrizes 
+            for i in range(4):
+                tabuleiro_de_teste3.matriz1[i][j] = 1
+            if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+                return 0
+            tabuleiro_de_teste3 = Tabuleiro()
+
+            for i in range(4):
+                tabuleiro_de_teste3.matriz2[i][j] = 1
+            if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+                return 0
+            tabuleiro_de_teste3 = Tabuleiro()
+
+            for i in range(4):
+                tabuleiro_de_teste3.matriz3[i][j] = 1
+            if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+                return 0
+            tabuleiro_de_teste3 = Tabuleiro()
+
+            for i in range(4):
+                tabuleiro_de_teste3.matriz4[i][j] = 1
+            if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+                return 0
+            tabuleiro_de_teste3 = Tabuleiro()    
+    
+    return 1
+
+
+def testes():
+    print("Antes de começar o jogo serão feitos alguns testes!")
+    if(testeEmpate() == 0):
+        print("O teste de empate falhou, o jogo não acaba em empate.")
+        return 0
+    elif(testeDisponibilidade() == 0):
+        print("O tente de disponibilidade falhou")
+        return 0
+    elif(testeVitoria() == 0):
+        print("O teste de vitoria falhou")
+        return 0
+    else:
+        print("...")
+        print("Todos os testes passaram!")
+        print("")
+        print("")
+        return 1
+    print("")
+    print("")
+testes()
 main()
+
+
+
+
+
+    
+
 
 
 
