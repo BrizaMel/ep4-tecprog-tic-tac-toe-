@@ -10,14 +10,12 @@ class Tabuleiro:
         self.matriz3 = np.zeros((4,4))
         self.matriz4 = np.zeros((4,4))
         self.casas_ocupadas = 0
-
     def disponibilidade(self):
         if self.casas_ocupadas < 64: # ainda pode jogar
             self.disponivel = 1
         else:
             self.disponivel = 0
         return self.disponivel
-
     def posicaodisponivel(self, matriz, linha, coluna):
         if(matriz == 1 and self.matriz1[linha][coluna] != 0):
            return 0
@@ -29,8 +27,7 @@ class Tabuleiro:
             return 0
         else:
             return 1
-
-    def verifica(self, num):
+    def verifica(self, num, nome):
         #verifica linhas de cada matriz horizontal (16)
         for i in range(4):
             v1=0; v2=0; v3=0; v4=0
@@ -44,7 +41,9 @@ class Tabuleiro:
                 if(self.matriz4[i][j]==num):
                     v4+=1
             if(v1==4 or v2==4 or v3==4 or v4==4):
-                print("Jogadore ", num ," ganhou!")
+                print("")
+                print("-------------Jogadore ", nome ," ganhou!-------------")
+                print("")
                 return num
         #verifica colunas de cada matriz horizontal (16)
         for j in range(4):
@@ -59,7 +58,9 @@ class Tabuleiro:
                 if(self.matriz4[i][j]==num):
                     v4+=1
             if(v1==4 or v2==4 or v3==4 or v4==4):
-                print("Jogadore ", num ," ganhou!")
+                print("")
+                print("-------------Jogadore ", nome ," ganhou!-------------")
+                print("")
                 return num
         #verifica diagonais de cada matriz horizontal (8)
         v1=0; v2=0; v3=0; v4=0; j=0
@@ -74,7 +75,26 @@ class Tabuleiro:
                 v4+=1
             j+=1
         if(v1==4 or v2==4 or v3==4 or v4==4):
-            print("Jogadore ", num ," ganhou!")
+            print("")
+            print("-------------Jogadore ", nome ," ganhou!-------------")
+            print("")
+            return num
+        #verifica diagonais de cada matriz horizontal (8)
+        v1=0; v2=0; v3=0; v4=0; j=3
+        for i in range(4):
+            if(self.matriz1[i][j]==num):
+                v1+=1
+            if(self.matriz2[i][j]==num):
+                v2+=1
+            if(self.matriz3[i][j]==num):
+                v3+=1
+            if(self.matriz4[i][j]==num):
+                v4+=1
+            j-=1
+        if(v1==4 or v2==4 or v3==4 or v4==4):
+            print("")
+            print("-------------Jogadore ", nome ," ganhou!-------------")
+            print("")
             return num
         v1=0; v2=0; v3=0; v4=0; j=3
         for i in range(4):
@@ -88,107 +108,122 @@ class Tabuleiro:
             if(self.matriz4[i][j]==num):
                 v4+=1
         if(v1==4 or v2==4 or v3==4 or v4==4):
-            print("Jogadore ", num ," ganhou!")
+            print("")
+            print("-------------Jogadore ", nome ," ganhou!-------------")
+            print("")
             return num
         #verifica verticais "entre matrizes" (verticais das matrizes verticais) (16)
         for i in range(4):
             for j in range(4):
                 if(self.matriz1[i][j]==num and self.matriz2[i][j]==num and self.matriz3[i][j]==num and self.matriz4[i][j]==num):
-                    print("Jogadore ", num ," ganhou!")
+                    print("")
+                    print("-------------Jogadore ", nome ," ganhou!-------------")
+                    print("")
                     return num
         #verifica diagonais das matrizes verticais (16)
         for i in range(4):
             if(self.matriz1[i][0]==num and self.matriz2[i][1]==num and self.matriz3[i][2]==num and self.matriz4[i][3]==num):
-                    print("Jogadore ", num ," ganhou!")
+                    print("")
+                    print("-------------Jogadore ", nome ," ganhou!-------------")
+                    print("")
                     return num
         for i in range(4):
             if(self.matriz4[i][0]==num and self.matriz3[i][1]==num and self.matriz2[i][2]==num and self.matriz1[i][3]==num):
-                    print("Jogadore ", num ," ganhou!")
+                    print("")
+                    print("-------------Jogadore ", nome ," ganhou!-------------")
+                    print("")
                     return num
         for j in range(4):
             if(self.matriz1[0][j]==num and self.matriz2[1][j]==num and self.matriz3[2][j]==num and self.matriz4[3][j]==num):
-                    print("Jogadore ", num ," ganhou!")
+                    print("")
+                    print("-------------Jogadore ", nome ," ganhou!-------------")
+                    print("")
                     return num
         for j in range(4):
             if(self.matriz4[0][j]==num and self.matriz3[1][j]==num and self.matriz2[2][j]==num and self.matriz1[3][j]==num):
-                    print("Jogadore ", num ," ganhou!")
+                    print("")
+                    print("-------------Jogadore ", nome ," ganhou!-------------")
+                    print("")
                     return num
         #verifica diagonais do cubo todo (4)
         if(self.matriz1[0][0]==num and self.matriz2[1][1]==num and self.matriz3[2][2]==num and self.matriz4[3][3]==num):
-                print("Jogadore ", num ," ganhou!")
+                print("")
+                print("-------------Jogadore ", nome ," ganhou!-------------")
+                print("")
                 return num
         if(self.matriz1[0][3]==num and self.matriz2[1][2]==num and self.matriz3[2][1]==num and self.matriz4[3][0]==num):
-                print("Jogadore ", num ," ganhou!")
+                print("")
+                print("-------------Jogadore ", nome ," ganhou!-------------")
+                print("")
                 return num
         if(self.matriz1[3][3]==num and self.matriz2[2][2]==num and self.matriz3[1][1]==num and self.matriz4[0][0]==num):
-                print("Jogadore ", num ," ganhou!")
+                print("")
+                print("-------------Jogadore ", nome ," ganhou!-------------")
+                print("")
                 return num
         if(self.matriz1[3][0]==num and self.matriz2[2][1]==num and self.matriz3[1][2]==num and self.matriz4[0][3]==num):
-                print("Jogadore ", num ," ganhou!")
+                print("")
+                print("-------------Jogadore ", nome ," ganhou!-------------")
+                print("")
                 return num
-    
     def imprimematriz(self):
-        print("Matriz 1", end='')
-        print("                            ", end='')
-        print("Matriz 2")
-        print("__1___2____3___4_", end='') 
+        print("")
+        print("       Matriz 1", end='')
+        print("                   ", end='')
+        print("   Matriz 2")
+        print("   __0___1___2___3_", end='') 
         print("           ", end='')
-        print("__1___2____3___4_")
+        print("    __0___1___2___3_")
         for i in range(4):
             print(i, " ", end='')
             for j in range(4):
                 if(self.matriz1[i][j] == 1):
                     print("|_x_", end='')
-                if(self.matriz1[i][j] == 2):
+                elif(self.matriz1[i][j] == 2):
                     print("|_o_", end='')
-                else: 
+                elif(self.matriz1[i][j] == 0):  
                     print("|___", end='')
             print("|", end='')
-
             print("           ", end='')
-            for j in range(4)
+            print(i, " ", end='')
+            for j in range(4):
                 if(self.matriz2[i][j] == 1):
                     print("|_x_", end='')
-                if(self.matriz2[i][j] == 2):
+                elif(self.matriz2[i][j] == 2):
                     print("|_o_", end='')
-                else: 
+                elif(self.matriz2[i][j] == 0): 
                     print("|___", end='')
             print("|")
-        
         print("  ")
-
-        print("Matriz 3", end='')
-        print("                            ", end='')
-        print("Matriz 4")
-        print("__1___2____3___4_", end='') 
+        print("       Matriz 3", end='')
+        print("                    ", end='')
+        print("   Matriz 4")
+        print("   __0___1___2___3_", end='') 
         print("           ", end='')
-        print("__1___2____3___4_")
+        print("    __0___1___2___3_")
         for i in range(4):
             print(i, " ", end='')
             for j in range(4):
                 if(self.matriz3[i][j] == 1):
                     print("|_x_", end='')
-                if(self.matriz3[i][j] == 2):
+                elif(self.matriz3[i][j] == 2):
                     print("|_o_", end='')
-                else: 
+                elif(self.matriz3[i][j] == 0): 
                     print("|___", end='')
             print("|", end='')
-
             print("           ", end='')
-            for j in range(4)
+            print(i, " ", end='')
+            for j in range(4):
                 if(self.matriz4[i][j] == 1):
                     print("|_x_", end='')
-                if(self.matriz4[i][j] == 2):
+                elif(self.matriz4[i][j] == 2):
                     print("|_o_", end='')
-                else: 
+                elif(self.matriz4[i][j] == 0): 
                     print("|___", end='')
             print("|")
+        print("")
 
         
-
-
-or i in range(4)
-            print("__
 class Jogador:
     def __init__(self, nome, XO):
         self.nome = nome
@@ -208,19 +243,23 @@ class Jogador:
 
 class Humano(Jogador):
     def realiza_jogada(self):
-        possibilidades = {1,2,3,4}
+        matrizes = {1,2,3,4}
+        linhas = {0,1,2,3}
+        colunas = {0,1,2,3}
+        print("")
         print("Por favor jogadore", self.nome)
-        matriz, linha, coluna = input("Escolha a matriz, linha e coluna separados por espaço: ").split()
-        matriz, linha, coluna = int(matriz), int(linha), int(coluna)
-        while( matriz not in possibilidades ):
+        matriz = int(input("Escolha uma matriz(1, 2, 3 ou 4): "))
+        linha = int(input("Escolha uma linha(0, 1, 2 ou 3): "))
+        coluna = int(input("Escolha uma coluna(0, 1, 2 ou 3): "))
+        while( matriz not in matrizes ):
             print("Desculpe, o número de matriz que você digitou é invalido, tente novamente.")
             matriz = int(input("Digite um número de matriz válido(1 a 4): "))
-        while( linha not in possibilidades ):
-            print("Desculpe, o número de matriz que você digitou é invalido, tente novamente.")
-            linha = int(input("Digite um número de linha válido(1 a 4): "))
-        while( coluna not in possibilidades ):
+        while( linha not in linhas ):
+            print("Desculpe, o número de linha que você digitou é invalido, tente novamente.")
+            linha = int(input("Digite um número de linha válido(0 a 3): "))
+        while( coluna not in colunas ):
             print("Desculpe, o número de coluna que você digitou é invalido, tente novamente.")
-            matriz = int(input("Digite um número de coluna válido(1 a 4) "))
+            coluna = int(input("Digite um número de coluna válido(0 a 3) "))
         self.jogada(matriz, linha, coluna)
 
 
