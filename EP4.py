@@ -509,8 +509,25 @@ def testeVitoria():
         if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
             return 0
         tabuleiro_de_teste3 = Tabuleiro()
-        
+
     return 1
+
+def testeAtribuição():
+    tabuleiro_de_teste4 = Tabuleiro()
+    jogadorTeste = Humano(jogador, 1, tabuleiro_de_teste4)
+
+    for m in range(4)
+        for i in range(4)
+            for j in range(4)
+                jogadorTeste.jogada(m+1, i, j)
+    
+    # testa se o jogador conseguiu jogar em todas as posições
+        for i in range(4)
+            for j in range(4)
+                if(tabuleiro_de_teste4.matriz1[i][j]) != 1 or tabuleiro_de_teste4.matriz2 != 1 or tabuleiro_de_teste4.matriz3 != 1 or tabuleiro_de_teste4.matriz4 != 1):
+                    return 0
+        
+        return 1
 
 
 def testes():
@@ -524,6 +541,8 @@ def testes():
     elif(testeVitoria() == 0):
         print("O teste de vitoria falhou")
         return 0
+    elif(testeAtribuição() == 0):
+        print("O teste de atibuição falhou")
     else:
         print("...")
         print("Todos os testes passaram!")
