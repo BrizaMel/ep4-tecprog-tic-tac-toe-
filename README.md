@@ -1,5 +1,5 @@
 # EP4-TECPROG
-# Jogo da velha em 4D
+# Jogo da velha em 3D
 
 
 # integrantes:
@@ -11,7 +11,7 @@ Nome: Beatriz Schicchi Zilberman
 ## Descrição:
 
     Este é o quarto exercício programa da matéria técnicas em programação.
-    Neste EP, é feito um jogo conhecido como "jogo da velha em 4d" ou "tic tac toe
+    Neste EP, é feito um jogo conhecido como "jogo da velha em 3d" ou "tic tac toe
     4d" usando orientação a objeto.
 
 ## Tipos de jogadores:
