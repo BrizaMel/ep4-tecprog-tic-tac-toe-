@@ -444,8 +444,72 @@ def testeVitoria():
                 tabuleiro_de_teste3.matriz4[i][j] = 1
             if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
                 return 0
-            tabuleiro_de_teste3 = Tabuleiro()    
+            tabuleiro_de_teste3 = Tabuleiro()
+
+    j = 0
+    for i in range(4): # Verifica vitória na diagonal principal da matriz 1
+            tabuleiro_de_teste3.matriz1[i][j] == 1
+            j += 1
+        if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+            return 0
+        tabuleiro_de_teste3 = Tabuleiro()
+
+    j = 0
+    for i in range(4): # Verifica vitória na diagonal principal da matriz2
+            tabuleiro_de_teste3.matriz2[i][j] == 1
+            j += 1
+        if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+            return 0
+        tabuleiro_de_teste3 = Tabuleiro()
+
+    j = 0
+    for i in range(4): # Verifica vitória na diagonal principal da matriz3
+            tabuleiro_de_teste3.matriz3[i][j] == 1
+            j += 1
+        if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+            return 0
+        tabuleiro_de_teste3 = Tabuleiro()
     
+    j = 0
+    for i in range(4): # Verifica vitória na diagonal principal da matriz4
+            tabuleiro_de_teste3.matriz2[i][j] == 1
+            j += 1
+        if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+            return 0
+        tabuleiro_de_teste3 = Tabuleiro()
+    
+    j = 3
+    for i in range(4): # Verifica vitória na diagonal secundária da matriz1
+            tabuleiro_de_teste3.matriz1[i][j] == 1
+            j -= 1
+        if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+            return 0
+        tabuleiro_de_teste3 = Tabuleiro()
+    
+    j = 3
+    for i in range(4): # Verifica vitória na diagonal secundária da matriz2
+            tabuleiro_de_teste3.matriz2[i][j] == 1
+            j -= 1
+        if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+            return 0
+        tabuleiro_de_teste3 = Tabuleiro()
+    
+    j = 3
+    for i in range(4): # Verifica vitória na diagonal secundária da matriz3
+            tabuleiro_de_teste3.matriz3[i][j] == 1
+            j -= 1
+        if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+            return 0
+        tabuleiro_de_teste3 = Tabuleiro()
+    
+    j = 3
+    for i in range(4): # Verifica vitória na diagonal secundária da matriz4
+            tabuleiro_de_teste3.matriz4[i][j] == 1
+            j -= 1
+        if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
+            return 0
+        tabuleiro_de_teste3 = Tabuleiro()
+        
     return 1
 
 
