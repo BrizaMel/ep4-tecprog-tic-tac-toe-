@@ -51,4 +51,6 @@ Nome: Beatriz Schicchi Zilberman
 
     Para começar o jogo o usuario deve no terminal executar o programa como
     "python3 EP4", o jogo irá automaticamente começar após este comando.
+     Ao iniciar o programa as funções de teste são inicializados automaticamente,
+    não tendo havendo a necessidade de ativa-los manualmente.
 
