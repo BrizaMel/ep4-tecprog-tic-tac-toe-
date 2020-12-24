@@ -222,6 +222,7 @@ class Humano(Jogador):
                 coluna = int(input("Digite um número de coluna válido(0 a 3) "))
             if(self.tabuleiro.posicao_disponivel(matriz, linha, coluna)):
                 self.jogada(matriz, linha, coluna)
+                print("")
                 print(self.nome, " (humano) jogou na matriz ", matriz, ", linha ", linha, " e coluna ", coluna)
                 jogadaValida = 1
             else:
@@ -237,6 +238,7 @@ class Estabanado(Jogador):
             coluna = randint(0, 3)
             if(self.tabuleiro.posicao_disponivel(matriz, linha, coluna)):
                 self.jogada(matriz, linha, coluna)
+                print("")
                 print(self.nome, " (estabanado) jogou na matriz ", matriz, ", linha ", linha, " e coluna ", coluna)
                 jogadaValida = 1
 
@@ -256,6 +258,7 @@ class Comecru(Jogador):
                     j += 1
                 i += 1
             m += 1
+        print("")
         print(self.nome, " (comecru) jogou na matriz ", m, ", linha ", i, " e coluna ", j)
 
 def main():
