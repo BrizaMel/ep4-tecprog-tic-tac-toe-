@@ -448,85 +448,82 @@ def testeVitoria():
 
     j = 0
     for i in range(4): # Verifica vitória na diagonal principal da matriz 1
-            tabuleiro_de_teste3.matriz1[i][j] == 1
-            j += 1
+        tabuleiro_de_teste3.matriz1[i][j] == 1
+        j += 1
         if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
             return 0
         tabuleiro_de_teste3 = Tabuleiro()
 
     j = 0
     for i in range(4): # Verifica vitória na diagonal principal da matriz2
-            tabuleiro_de_teste3.matriz2[i][j] == 1
-            j += 1
+        tabuleiro_de_teste3.matriz2[i][j] == 1
+        j += 1
         if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
             return 0
         tabuleiro_de_teste3 = Tabuleiro()
 
     j = 0
     for i in range(4): # Verifica vitória na diagonal principal da matriz3
-            tabuleiro_de_teste3.matriz3[i][j] == 1
-            j += 1
+        tabuleiro_de_teste3.matriz3[i][j] == 1
+        j += 1
         if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
             return 0
         tabuleiro_de_teste3 = Tabuleiro()
     
     j = 0
     for i in range(4): # Verifica vitória na diagonal principal da matriz4
-            tabuleiro_de_teste3.matriz2[i][j] == 1
-            j += 1
+        tabuleiro_de_teste3.matriz2[i][j] == 1
+        j += 1
         if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
             return 0
         tabuleiro_de_teste3 = Tabuleiro()
     
     j = 3
     for i in range(4): # Verifica vitória na diagonal secundária da matriz1
-            tabuleiro_de_teste3.matriz1[i][j] == 1
-            j -= 1
+        tabuleiro_de_teste3.matriz1[i][j] == 1
+        j -= 1
         if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
             return 0
         tabuleiro_de_teste3 = Tabuleiro()
     
     j = 3
     for i in range(4): # Verifica vitória na diagonal secundária da matriz2
-            tabuleiro_de_teste3.matriz2[i][j] == 1
-            j -= 1
+        tabuleiro_de_teste3.matriz2[i][j] == 1
+        j -= 1
         if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
             return 0
         tabuleiro_de_teste3 = Tabuleiro()
     
     j = 3
     for i in range(4): # Verifica vitória na diagonal secundária da matriz3
-            tabuleiro_de_teste3.matriz3[i][j] == 1
-            j -= 1
+        tabuleiro_de_teste3.matriz3[i][j] == 1
+        j -= 1
         if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
             return 0
         tabuleiro_de_teste3 = Tabuleiro()
     
     j = 3
     for i in range(4): # Verifica vitória na diagonal secundária da matriz4
-            tabuleiro_de_teste3.matriz4[i][j] == 1
-            j -= 1
+        tabuleiro_de_teste3.matriz4[i][j] == 1
+        j -= 1
         if(tabuleiro_de_teste3.verifica_vitoria(1, "teste") == 0):
             return 0
         tabuleiro_de_teste3 = Tabuleiro()
 
     return 1
 
-def testeAtribuição():
+def testeJogada():
     tabuleiro_de_teste4 = Tabuleiro()
-    jogadorTeste = Humano(jogador, 1, tabuleiro_de_teste4)
-
-    for m in range(4)
-        for i in range(4)
-            for j in range(4)
+    jogadorTeste = Humano("jogador", 1, tabuleiro_de_teste4)
+    for m in range(4):
+        for i in range(4):
+            for j in range(4):
                 jogadorTeste.jogada(m+1, i, j)
-    
     # testa se o jogador conseguiu jogar em todas as posições
-        for i in range(4)
-            for j in range(4)
-                if(tabuleiro_de_teste4.matriz1[i][j]) != 1 or tabuleiro_de_teste4.matriz2 != 1 or tabuleiro_de_teste4.matriz3 != 1 or tabuleiro_de_teste4.matriz4 != 1):
+        for i in range(4):
+            for j in range(4):
+                if(tabuleiro_de_teste4.matriz1[i][j] != 1 or tabuleiro_de_teste4.matriz2[i][j] != 1 or tabuleiro_de_teste4.matriz3[i][j] != 1 or tabuleiro_de_teste4.matriz4[i][j] != 1):
                     return 0
-        
         return 1
 
 
@@ -541,7 +538,8 @@ def testes():
     elif(testeVitoria() == 0):
         print("O teste de vitoria falhou")
         return 0
-    elif(testeAtribuição() == 0):
+    elif(testeJogada
+() == 0):
         print("O teste de atibuição falhou")
     else:
         print("...")
