@@ -44,13 +44,21 @@ Nome: Beatriz Schicchi Zilberman
     sistema operacional python3 ou usar plataformas de máquina virtual como
     jupyter notebook.
 
-    Para rodar esse EP4 é necessário também instalar a biblioteca NumPy, o tutorial de como instalar como ser conferido neste site: 
+     Para rodar esse EP4 é necessário também instalar a biblioteca NumPy, o tutorial 
+    de como instalar como ser conferido neste site: 
     https://numpy.org/install/
+
+     Além disso é necessário instalar o pytest para executar o testes automatizados, 
+    o tutorial de como instalar o pytest pode ser conferido neste site:
+    https://docs.pytest.org/en/3.0.6/getting-started.html
 
 ## Como executar o programa
 
     Para começar o jogo o usuario deve no terminal executar o programa como
     "python3 EP4", o jogo irá automaticamente começar após este comando.
-     Ao iniciar o programa as funções de teste são inicializados automaticamente,
-    não tendo havendo a necessidade de ativa-los manualmente.
+    
+    Para executar os testes basta digitar no terminal "pytest" que ele irá
+    executar todos os arquivos de teste no repositório. Caso o usuário deseje
+    executar testes individuais, isto é, test_Jogador e test_Tabuleiro será
+    necessário digitar respectivamente "pytest test_Jogador" e "pytest_Tabuleiro".
 
